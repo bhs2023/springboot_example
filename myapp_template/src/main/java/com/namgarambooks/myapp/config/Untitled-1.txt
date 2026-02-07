@@ -1,0 +1,8 @@
+
+시작 - 돋보기 - run 
+conn /as sysdba
+conn system/1234
+create user user01 identified by 1234;
+grant connect, resource to user01;
+
+conn user01/1234
