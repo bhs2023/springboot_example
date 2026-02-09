@@ -10,6 +10,6 @@ public interface BoardService {
     BoardDto getView(String id);
     boolean insert(BoardDto dto);
     boolean update(BoardDto dto);
-    boolean delete(BoardDto dto);
+    boolean delete(String seq);
 
 }

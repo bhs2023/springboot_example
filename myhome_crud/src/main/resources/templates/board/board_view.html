@@ -30,7 +30,7 @@
 					</tr>
 					<tr>
 						<th >작성일</th>
-						<td><span th:text="${boardView.regdate}"></span></td>
+						<td><span th:text="${boardView.wdate}"></span></td>
 					</tr>
 					<tr>
 						<th colspan="2"  style="text-align: center;">내용</th>
@@ -46,8 +46,8 @@
 		</div>
 
 		<div class="container mt-3" style="text-align:right;">
-			<a  th:href="@{/board/modify/{id}(id=${boardView.id})}"  class="btn btn-secondary">수정</a>
-			<a  th:href="@{/board/delete/{id}(id=${boardView.id})}"  class="btn btn-secondary">삭제</a>
+			<a  th:href="@{/board/modify/{seq}(seq=${boardView.seq})}"  class="btn btn-secondary">수정</a>
+			<a  th:href="@{/board/delete/{seq}(seq=${boardView.seq})}"  class="btn btn-secondary">삭제</a>
 			<a  th:href="@{/board/list}"  class="btn btn-secondary">목록</a>
 		</div>
 

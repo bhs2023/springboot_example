@@ -17,11 +17,11 @@ public class BoardDaoImpl implements BoardDao{
         for(int i=1; i<=10; i++) {
             //빌더패턴을 이용해서 객체를 작성한다
             BoardDto dto = BoardDto.builder()
-                    .id(i+"")
+                    .seq(i+"")
                     .title("제목"+i)
                     .writer("작성자"+i)
                     .contents("내용"+i)
-                    .regdate("2024-08-06")
+                    .wdate("2024-08-06")
                     .build();
             list.add(dto); //리스트에 추가한다
         }
@@ -34,7 +34,7 @@ public class BoardDaoImpl implements BoardDao{
 
     @Override
     public Optional<BoardDto> getView(String id) {
-        List<BoardDto> result = list.stream().filter(dto->dto.getId().equals(id)).collect(Collectors.toList());
+        List<BoardDto> result = list.stream().filter(dto->dto.getSeq().equals(id)).collect(Collectors.toList());
         System.out.println(result.get(0));
 
         //객체가 null 일수도 있다
@@ -47,9 +47,9 @@ public class BoardDaoImpl implements BoardDao{
 
     @Override
     public boolean insert(BoardDto dto) {
-        String id = list.get(list.size()-1).getId();
+        String id = list.get(list.size()-1).getSeq();
         int nId = Integer.parseInt(id)+1;
-        dto.setId(String.valueOf(nId));
+        dto.setSeq(String.valueOf(nId));
         list.add(dto);
         return true;
     }
@@ -57,7 +57,7 @@ public class BoardDaoImpl implements BoardDao{
     @Override
     public boolean  update(BoardDto dto) {
         List<BoardDto> resultList = list.stream()
-                .filter((o)->o.getId().equals(dto.getId()))
+                .filter((o)->o.getSeq().equals(dto.getSeq()))
                 .collect(Collectors.toList());
 
         if( resultList.size()>0)
@@ -76,10 +76,10 @@ public class BoardDaoImpl implements BoardDao{
     }
 
     @Override
-    public boolean delete(BoardDto dto) {
+    public boolean delete(String seq) {
         //stream 은 삭제 안된다
         List<BoardDto> resultList = list.stream()
-                .filter((o)->o.getId().equals(dto.getId()))
+                .filter((o)->o.getSeq().equals(seq))
                 .collect(Collectors.toList());
 
         if( resultList.size()>0)

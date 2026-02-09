@@ -49,8 +49,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public boolean delete(BoardDto dto) {
+    public boolean delete(String seq) {
 
-        return boardDao.delete(dto);
+        return boardDao.delete(seq);
     }
 }

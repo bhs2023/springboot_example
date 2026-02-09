@@ -9,9 +9,14 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class BoardDto {
-	private String id;
+	private String seq;
 	private String title;
 	private String writer;
 	private String contents;
-	private String regdate;
+	private String filename;
+	private String imageurl;
+	private String wdate;
+	private String rnum="";
+	private String hit="0";
+
 }

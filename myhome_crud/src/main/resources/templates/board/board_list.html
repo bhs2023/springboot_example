@@ -30,11 +30,11 @@
 				</thead>
 				<tbody>
 					<tr th:each="board:${boardList}" >
-						<td><span th:text="${board.id}"></span></td>
+						<td><span th:text="${board.seq}"></span></td>
 						<td>
-							<a th:href="@{/board/view/{id}(id=${board.id})}"><span th:text="${board.title}"></span></a></td>
+							<a th:href="@{/board/view/{id}(id=${board.seq})}"><span th:text="${board.title}"></span></a></td>
 						<td><span th:text="${board.writer}"></span></td>
-						<td><span th:text="${board.regdate}"></span></td>
+						<td><span th:text="${board.wdate}"></span></td>
 					</tr>
 				</tbody>
 			</table>

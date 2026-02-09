@@ -49,10 +49,10 @@ public class BoardController {
         return  "redirect:/board/list";
     }
 
-    @GetMapping("/modify/{id}")
-    public String modify(Model model,  @PathVariable("id")String id){
+    @GetMapping("/modify/{seq}")
+    public String modify(Model model,  @PathVariable("seq")String seq){
         model.addAttribute("mode", "modify");
-        model.addAttribute("boardView", boardService.getView(id));
+        model.addAttribute("boardView", boardService.getView(seq));
         return  "board/board_write2";
     }
 
@@ -63,10 +63,10 @@ public class BoardController {
         return  "redirect:/board/list";
     }
 
-    @PostMapping("/delete")
-    public String delete(BoardDto dto) {
+    @GetMapping("/delete/{seq}")
+    public String delete(@PathVariable("seq")String seq) {
 
-        boardService.delete(dto);
+        boardService.delete(seq);
         return "redirect:/board/list";
     }
 }
