@@ -3,21 +3,26 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title >Thymeleaf Test</title>
+    <title>Thymeleaf Layout</title>
 </head>
 <body>
 
-<header >
+<header>
     <h1>My Website</h1>
     <nav>
         <ul>
-            <li><a href="/" >Home</a></li>
+            <li><a th:href="@{/}">Home</a></li>
         </ul>
     </nav>
 </header>
 
 <section layout:fragment="content">
-
+    <!-- 이 부분이 각 페이지의 내용으로 채워집니다 -->
 </section>
 
+<footer>
+    <p>© 2024 My Website</p>
+</footer>
+
 </body>
+</html>

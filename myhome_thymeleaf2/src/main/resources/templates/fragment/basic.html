@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title >Thymeleaf Test</title>
+    <title>Fragment 방식1 - 기본 예제</title>
 </head>
 <body>
 
-<header >
-    <h1>My Website</h1>
-    <nav>
-        <ul>
-            <li><a href="/" >Home</a></li>
-        </ul>
-    </nav>
-</header>
+<!-- header 조각 삽입 -->
+<div th:replace="~{fragment/layout :: header}"></div>
 
 <section>
-    <h2>About Us</h2>
-    <p>This is the about page content.</p>
+    <h2>Fragment 방식1 (th:replace)</h2>
+    <p>이 페이지는 fragment/layout.html의 header 조각을 가져다 사용했습니다.</p>
+    <p>th:replace를 사용하면 필요한 조각을 골라서 삽입할 수 있습니다.</p>
 </section>
 
 </body>
+</html>

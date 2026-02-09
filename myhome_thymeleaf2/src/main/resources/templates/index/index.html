@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>메인 페이지</title>
 </head>
 <body>
-    <a th:href="@{/board/list}">게시판</a>
+    <h1>Thymeleaf 예제 프로젝트</h1>
+    
 
+    <h2>Fragment 예제</h2>
+    
+    <h3>방식1: th:replace (조각 삽입 방식)</h3>
+    <p>페이지에 header, footer 등의 조각을 가져다 붙이는 방식</p>
+    <ul>
+        <li><a th:href="@{/fragment/example1}">Fragment 방식1 예제</a></li>
+        <li><a th:href="@{/fragment/basic1}">Fragment 방식1 기본</a></li>
+    </ul>
+    
+    <h3>방식2: layout:decorate (레이아웃 상속 방식)</h3>
+    <p>레이아웃 템플릿을 상속받아서 특정 부분만 채우는 방식</p>
+    <ul>
+        <li><a th:href="@{/fragment/example2}">Fragment 방식2 예제</a></li>
+        <li><a th:href="@{/fragment/basic2}">Fragment 방식2 기본</a></li>
+    </ul>
+    
+    <hr>
+
+    <h2>차이점 설명</h2>
+    <table style="border:1px solid blue; width:60%">
+        <tr>
+            <th>구분</th>
+            <th>방식1 (th:replace)</th>
+            <th>방식2 (layout:decorate)</th>
+        </tr>
+        <tr>
+            <td>폴더</td>
+            <td>fragment/</td>
+            <td>fragment2/</td>
+        </tr>
+        <tr>
+            <td>사용법</td>
+            <td>조각을 삽입</td>
+            <td>레이아웃 상속</td>
+        </tr>
+        <tr>
+            <td>특징</td>
+            <td>header, footer 등을<br>필요한 곳에 가져다 씀</td>
+            <td>전체 레이아웃을 상속받고<br>내용만 채움</td>
+        </tr>
+    </table>
+
+    <h1><a th:href="@{/board/list}">게시판 목록</a></h1>
 </body>
 </html>
