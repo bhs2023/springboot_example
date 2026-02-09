@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>URL 링크 생성 예제</title>
+</head>
+<body>
+    <h1>Thymeleaf URL 링크 생성 예제</h1>
+    
+    <h3>URL 생성 방법</h3>
+    <ul>
+        <li><strong>th:href="@{/경로}"</strong> - 절대 경로 링크</li>
+        <li><strong>th:href="@{/경로(파라미터=값)}"</strong> - 쿼리 파라미터 포함</li>
+        <li><strong>th:href="@{/경로/{변수}(변수=값)}"</strong> - 경로 변수 사용</li>
+    </ul>
+    
+    <hr>
+    
+    <h2>1. 기본 네비게이션 링크</h2>
+    <p>
+        <a th:href="@{/}">홈</a> |
+        <a th:href="@{/test1}">테스트1</a> |
+        <a th:href="@{/list1}">리스트1</a> |
+        <a th:href="@{/condition}">조건문</a> |
+        <a th:href="@{/user}">객체 예제</a> |
+        <a th:href="@{/books}">반복문</a>
+    </p>
+    
+    <hr>
+    
+    <h2>2. 쿼리 파라미터를 포함한 링크</h2>
+    <p>
+        <!-- ?id=1 형태의 쿼리 파라미터 생성 -->
+        <a th:href="@{/user/detail(id=1)}">사용자 1 상세보기</a><br>
+        <a th:href="@{/user/detail(id=2)}">사용자 2 상세보기</a><br>
+        
+        <!-- 여러 파라미터 포함 -->
+        <a th:href="@{/search(keyword='스프링', page=1)}">검색 결과</a>
+    </p>
+    
+    <hr>
+    
+    <h2>3. 동적 사용자 카드 (반복문 + 링크)</h2>
+    <div th:each="user : ${users}">
+        <h3 th:text="${user.name}">사용자명</h3>
+        <p>
+            나이: <span th:text="${user.age}">0</span>세 | 
+            이메일: <span th:text="${user.email}">email</span>
+        </p>
+        <p>
+            <!-- 경로 변수를 사용한 동적 링크 -->
+            <a th:href="@{/user/detail/{id}(id=${user.email})}">상세보기</a> |
+            <a th:href="@{/user/edit(email=${user.email})}">수정</a> |
+            <a th:href="@{/user/delete(email=${user.email})}" 
+               onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+        </p>
+        <hr>
+    </div>
+    
+    <h2>4. 테이블 형태로 링크 표시</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>이메일</th>
+                <th>작업</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user, stat : ${users}">
+                <td th:text="${stat.count}">1</td>
+                <td th:text="${user.name}">-</td>
+                <td th:text="${user.age}">-</td>
+                <td th:text="${user.email}">-</td>
+                <td>
+                    <!-- 여러 파라미터를 포함한 링크 -->
+                    <a th:href="@{/user/profile(name=${user.name}, age=${user.age}, email=${user.email})}">
+                        프로필 보기
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr>
+    
+    <h2>5. 조건부 링크 생성</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>상태</th>
+                <th>작업</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}">-</td>
+                <td th:text="${user.active} ? '활성' : '비활성'">-</td>
+                <td>
+                    <!-- 활성 사용자만 링크 표시 -->
+                    <span th:if="${user.active}">
+                        <a th:href="@{/user/message(to=${user.email})}">메시지 보내기</a>
+                    </span>
+                    <span th:unless="${user.active}">
+                        (비활성 계정)
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr>
+    
+    <h2>URL 생성 예제 코드</h2>
+    <pre>
+&lt;!-- 기본 링크 --&gt;
+&lt;a th:href="@{/home}"&gt;홈&lt;/a&gt;
+
+&lt;!-- 쿼리 파라미터 1개 --&gt;
+&lt;a th:href="@{/user(id=1)}"&gt;사용자 1&lt;/a&gt;
+결과: /user?id=1
+
+&lt;!-- 쿼리 파라미터 여러 개 --&gt;
+&lt;a th:href="@{/search(keyword='java', page=1)}"&gt;검색&lt;/a&gt;
+결과: /search?keyword=java&page=1
+
+&lt;!-- 경로 변수 --&gt;
+&lt;a th:href="@{/user/{id}(id=123)}"&gt;사용자 상세&lt;/a&gt;
+결과: /user/123
+
+&lt;!-- 경로 변수 + 쿼리 파라미터 --&gt;
+&lt;a th:href="@{/user/{id}/posts(id=123, page=2)}"&gt;게시글&lt;/a&gt;
+결과: /user/123/posts?page=2
+    </pre>
+    
+    <hr>
+    <p><a href="/">홈으로 돌아가기</a></p>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>반복문과 인덱스 예제</title>
+</head>
+<body>
+    <h1>Thymeleaf 반복문과 인덱스 예제</h1>
+    
+    <h3>전체 도서 수: <span th:text="${totalBooks}">0</span>권</h3>
+    
+    <hr>
+    
+    <h2>1. 기본 리스트 출력 (순번 포함)</h2>
+    <ul>
+        <!-- 
+            th:each="변수명, 상태변수 : ${리스트}"
+            상태변수.index : 0부터 시작하는 인덱스
+            상태변수.count : 1부터 시작하는 순번
+        -->
+        <li th:each="book, status : ${books}">
+            <span th:text="${status.count}">1</span>. 
+            <span th:text="${book}">책 제목</span>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>2. 인덱스를 활용한 출력</h2>
+    <ul>
+        <li th:each="book, stat : ${books}">
+            <!-- index는 0부터 시작 -->
+            인덱스 [<span th:text="${stat.index}">0</span>] - 
+            <span th:text="${book}">책 제목</span>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>3. 첫 번째/마지막 항목 구분</h2>
+    <ul>
+        <li th:each="book, stat : ${books}">
+            <!-- 첫 번째 항목 -->
+            <span th:if="${stat.first}">[첫번째] </span>
+            
+            <!-- 마지막 항목 -->
+            <span th:if="${stat.last}">[마지막] </span>
+            
+            <span th:text="${stat.count}">1</span>. 
+            <span th:text="${book}">책 제목</span>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>4. 테이블 형태로 출력</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>순번</th>
+                <th>인덱스</th>
+                <th>도서명</th>
+                <th>홀/짝</th>
+                <th>위치</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book, stat : ${books}">
+                <td th:text="${stat.count}">1</td>
+                <td th:text="${stat.index}">0</td>
+                <td th:text="${book}">책 제목</td>
+                <!-- stat.odd: 홀수 순번 여부, stat.even: 짝수 순번 여부 -->
+                <td th:text="${stat.odd} ? '홀수' : '짝수'">-</td>
+                <td>
+                    <span th:if="${stat.first}">첫 번째</span>
+                    <span th:if="${stat.last}">마지막</span>
+                    <span th:if="${!stat.first and !stat.last}">중간</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr>
+    
+    <h3>상태 변수(status) 정리</h3>
+    <ul>
+        <li><strong>index</strong>: 0부터 시작하는 인덱스</li>
+        <li><strong>count</strong>: 1부터 시작하는 순번</li>
+        <li><strong>size</strong>: 전체 항목 수</li>
+        <li><strong>first</strong>: 첫 번째 항목 여부 (boolean)</li>
+        <li><strong>last</strong>: 마지막 항목 여부 (boolean)</li>
+        <li><strong>odd</strong>: 홀수 순번 여부 (boolean)</li>
+        <li><strong>even</strong>: 짝수 순번 여부 (boolean)</li>
+    </ul>
+    
+    <hr>
+    <p><a href="/">홈으로 돌아가기</a></p>
+</body>
+</html>

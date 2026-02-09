@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>객체 사용 예제</title>
+</head>
+<body>
+    <h1>Thymeleaf 객체 사용 예제</h1>
+    
+    <hr>
+    
+    <h2>1. 활성 사용자 정보</h2>
+    <h3 th:text="${user.name}">사용자 이름</h3>
+    <p>나이: <span th:text="${user.age}">0</span>세</p>
+    <p>이메일: <span th:text="${user.email}">email@example.com</span></p>
+    
+    <!-- boolean 속성 사용 -->
+    <p th:if="${user.active}">상태: 활성 계정</p>
+    <p th:unless="${user.active}">상태: 비활성 계정</p>
+    
+    <hr>
+    
+    <h2>2. 비활성 사용자 정보</h2>
+    <h3 th:text="${inactiveUser.name}">사용자 이름</h3>
+    <p>나이: <span th:text="${inactiveUser.age}">0</span>세</p>
+    <p>이메일: <span th:text="${inactiveUser.email}">email@example.com</span></p>
+    
+    <p th:if="${inactiveUser.active}">상태: 활성 계정</p>
+    <p th:unless="${inactiveUser.active}">상태: 비활성 계정</p>
+    
+    <hr>
+    
+    <h2>3. 사용자 정보 비교 테이블</h2>
+    <table border="1">
+        <tr>
+            <th>항목</th>
+            <th>활성 사용자</th>
+            <th>비활성 사용자</th>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td th:text="${user.name}">-</td>
+            <td th:text="${inactiveUser.name}">-</td>
+        </tr>
+        <tr>
+            <td>나이</td>
+            <!-- 텍스트와 변수 함께 사용 -->
+            <td th:text="${user.age} + '세'">-</td>
+            <td th:text="${inactiveUser.age} + '세'">-</td>
+        </tr>
+        <tr>
+            <td>이메일</td>
+            <td th:text="${user.email}">-</td>
+            <td th:text="${inactiveUser.email}">-</td>
+        </tr>
+        <tr>
+            <td>상태</td>
+            <!-- 삼항 연산자 사용 -->
+            <td th:text="${user.active} ? '활성' : '비활성'">-</td>
+            <td th:text="${inactiveUser.active} ? '활성' : '비활성'">-</td>
+        </tr>
+    </table>
+    
+    <hr>
+    <p><a href="/">홈으로 돌아가기</a></p>
+</body>
+</html>

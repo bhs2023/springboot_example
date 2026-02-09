@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thymeleaf 예제 모음</title>
+</head>
+<body>
+    <h1>Thymeleaf 학습 예제 모음</h1>
+    <p>초보자를 위한 Thymeleaf 기본 예제들입니다</p>
+    
+    <hr>
+    
+    <h2>새로 추가된 예제</h2>
+    <ul>
+        <li>
+            <h3>조건문 예제</h3>
+            <p>th:if, th:unless, 여러 조건 비교하기</p>
+            <a href="/condition">예제 보기</a>
+        </li>
+        
+        <li>
+            <h3>객체 사용 예제</h3>
+            <p>객체의 속성 접근, ${객체.속성} 문법</p>
+            <a href="/user">예제 보기</a>
+        </li>
+        
+        <li>
+            <h3>반복문 + 인덱스</h3>
+            <p>th:each, 상태 변수 활용 (index, count)</p>
+            <a href="/books">예제 보기</a>
+        </li>
+        
+        <li>
+            <h3>URL 링크 생성</h3>
+            <p>@{} 문법, 쿼리 파라미터, 경로 변수</p>
+            <a href="/links">예제 보기</a>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>기존 예제</h2>
+    <ul>
+        <li>
+            <h3>기본 텍스트 출력</h3>
+            <p>th:text 기본 사용법</p>
+            <a href="/test1">예제 보기</a>
+        </li>
+        
+        <li>
+            <h3>리스트 출력</h3>
+            <p>th:each 기본 사용</p>
+            <a href="/list1">예제 보기</a>
+        </li>
+    </ul>
+    
+    <hr>
+    
+    <h2>학습 순서 추천</h2>
+    <ol>
+        <li>기본 텍스트 출력 - Thymeleaf의 가장 기본적인 사용법</li>
+        <li>리스트 출력 - 반복문의 기초</li>
+        <li>조건문 예제 - 조건에 따라 다르게 표시하기</li>
+        <li>객체 사용 예제 - 실무에서 가장 많이 사용하는 패턴</li>
+        <li>반복문 + 인덱스 - 고급 반복문 기능</li>
+        <li>URL 링크 생성 - 동적인 웹 페이지 만들기</li>
+    </ol>
+</body>
+</html>
